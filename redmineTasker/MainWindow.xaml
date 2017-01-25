@@ -1,0 +1,19 @@
+﻿<Window x:Class="redmineTasker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Redminer" Height="167.53" Width="463.11" Loaded="Window_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
+    <Grid Margin="0,0,4,1">
+        <Label x:Name="redmineAddressLabel" Content="Адрес Redmine:" Margin="10,6,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.664,0.506" HorizontalAlignment="Left" Width="127"/>
+        <Label x:Name="authTypeLabel" Content="Тип аутентификации:" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.664,0.506" Width="127"/>
+        <Label x:Name="loginLabel" Content="Ключ:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.664,0.506" Width="127"/>
+        <TextBox x:Name="redmineAddressTextBox" HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Width="295" Text="https://redmine.kraftway.ru" Height="23" VerticalAlignment="Top"/>
+        <Label x:Name="passwdLabel" Content="Пароль:" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.664,0.506" Width="127" Visibility="Hidden"/>
+        <TextBox x:Name="passwdTextBox" HorizontalAlignment="Right" Margin="0,93,10,0" TextWrapping="Wrap" Width="295" Height="23" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Button Content="Вход" HorizontalAlignment="Right" Margin="0,0,10,10" Width="133" Height="20" VerticalAlignment="Bottom" Click="Button_Click"/>
+        <ComboBox x:Name="authTypeComboBox" HorizontalAlignment="Right" Margin="0,38,10,0" Width="295" SelectedIndex="0" Height="22" VerticalAlignment="Top" SelectionChanged="authTypeComboBox_SelectionChanged">
+            <ComboBoxItem Content="Api Key"/>
+            <ComboBoxItem Content="Basic Auth"/>
+        </ComboBox>
+        <PasswordBox x:Name="loginTextBox" HorizontalAlignment="Left" Margin="148,66,0,0" VerticalAlignment="Top" Width="295" Password="a5063b0d89da07c360679319a84a2d04c1491c98"/>
+    </Grid>
+</Window>

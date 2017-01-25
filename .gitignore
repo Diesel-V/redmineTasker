@@ -1,0 +1,12 @@
+.vs
+RedmineTasker.AuthModel/bin
+RedmineTasker.AuthModel/obj
+RedmineTasker.AuthModels/bin
+RedmineTasker.AuthModels/obj
+RedmineTasker.BL/bin
+RedmineTasker.BL/obj
+RedmineTasker.DAL/bin
+RedmineTasker.DAL/obj
+redmineTasker/bin
+redmineTasker/obj
+*.suo

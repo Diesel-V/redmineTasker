@@ -1,0 +1,27 @@
+﻿<Window x:Class="redmineTasker.Forms.CreateTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CreateTaskWindow" Height="346.604" Width="633" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+    <Grid>
+        <ComboBox x:Name="RedmineProjectComboBox" HorizontalAlignment="Right" Margin="0,14,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="Name"/>
+        <Label Content="Проект:" HorizontalAlignment="Left" Margin="29,18,0,0" VerticalAlignment="Top" Width="95"/>
+        <Label Content="Трекер:" HorizontalAlignment="Left" Margin="29,45,0,0" VerticalAlignment="Top"/>
+        <Label Content="Тема:" HorizontalAlignment="Left" Margin="29,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.434,0.335"/>
+        <Label Content="Статус:" HorizontalAlignment="Left" Margin="29,204,0,0" VerticalAlignment="Top"/>
+        <Label Content="Приоритет:" HorizontalAlignment="Left" Margin="29,231,0,0" VerticalAlignment="Top"/>
+        <Label Content="Описание:" HorizontalAlignment="Left" Margin="29,104,0,0" VerticalAlignment="Top"/>
+        <Label Content="Назначена:" HorizontalAlignment="Left" Margin="29,258,0,0" VerticalAlignment="Top"/>
+        <Label Content="Категория:" HorizontalAlignment="Left" Margin="29,289,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Label Content="Версия:" HorizontalAlignment="Left" Margin="29,315,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <ComboBox x:Name="RedmineTaskerComboBox" HorizontalAlignment="Right" Margin="0,41,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="Name" SelectedIndex="0"/>
+        <TextBox x:Name="ThemeTextBox" HorizontalAlignment="Right" Height="23" Margin="0,68,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="493"/>
+        <TextBox x:Name="DescTextBox" HorizontalAlignment="Right" Height="99" Margin="0,96,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="493"/>
+        <ComboBox x:Name="RedmineStatusComboBox" HorizontalAlignment="Right" Margin="0,200,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="Name" SelectedIndex="0"/>
+        <ComboBox x:Name="RedminePriorityComboBox" HorizontalAlignment="Right" Margin="0,227,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="Name" SelectedIndex="0"/>
+        <ComboBox x:Name="RedmineAppointedComboBox" HorizontalAlignment="Right" Margin="0,254,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="UserName"/>
+        <Button Content="Создать" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+        <ComboBox x:Name="RedmineCategoryComboBox" HorizontalAlignment="Right" Margin="0,281,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="name" SelectedIndex="0" Visibility="Hidden"/>
+        <ComboBox x:Name="RedmineVersionComboBox" HorizontalAlignment="Right" Margin="0,308,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="name" SelectedIndex="0" Visibility="Hidden"/>
+
+    </Grid>
+</Window>
