@@ -8,7 +8,13 @@ namespace RedmineTasker.BL
     public class RequestService
     {
         private readonly RequestRepository _requestRepository;
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="schema"></param>
+        /// <param name="host"></param>
+        /// <param name="redmineCredentials"></param>
         public RequestService(string schema, string host, RedmineCredentials redmineCredentials)
         {
             _requestRepository = new RequestRepository(schema, host, redmineCredentials);
