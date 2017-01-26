@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using redmineTasker.Forms;
@@ -11,11 +13,14 @@ namespace redmineTasker
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int _port = 80; //https 443
+    
         public MainWindow()
         {
             InitializeComponent();
             Application.Current.MainWindow = this;
             authTypeComboBox.SelectionChanged += authTypeComboBox_SelectionChanged;
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -32,9 +37,23 @@ namespace redmineTasker
             passwordLabel.Content = authTypeComboBox.SelectedIndex == 0 ? "Пароль:" : "Ключ:";
         }
 
+        private void UriCombine()
+        {
+            var qwe = new UriBuilder
+            {
+                Scheme = ((ContentControl) schemaComboBox.SelectedItem).Content.ToString(),
+                Host = hostTextBox.Text,
+                Port = int.Parse(portTextBox.Text),
+                Path = urlPathTextBox.Text
+            };
+            redmineAddressTextBox.Text = qwe.ToString();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Uri redmineUri;
+
+
             if (!Uri.TryCreate(redmineAddressTextBox.Text, UriKind.Absolute, out redmineUri))
             {
                 MessageBox.Show(this, "Неправильно задан адрес Redmine", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -66,6 +85,32 @@ namespace redmineTasker
             
             var createTaskWindow = new CreateTaskWindow(credentialClass, redmineUri, this);
             createTaskWindow.Show();            
+        }
+
+        private void hostTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            UriCombine();
+        }
+
+        private void portTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            
+            UriCombine();
+        }
+
+        private void urlPathTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            UriCombine();
+        }
+
+        private void portTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int port;
+            if (int.TryParse(((TextBox)sender).Text, out port))
+            {
+                _port = port;
+            }
+            portTextBox.Text = _port.ToString();
         }        
     }
 }

@@ -6,7 +6,7 @@
         <Label x:Name="redmineAddressLabel" Content="Адрес Redmine:" Margin="10,118,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.664,0.506" HorizontalAlignment="Left" Width="127"/>
         <Label x:Name="authTypeLabel" Content="Тип аутентификации:" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.664,0.506" Width="127"/>
         <Label x:Name="loginLabel" Content="Логин:" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.664,0.506" Width="127"/>
-        <TextBox x:Name="redmineAddressTextBox" Margin="142,121,10,0" TextWrapping="Wrap" Text="https://redmine.kraftway.ru" Height="23" VerticalAlignment="Top"/>
+        <TextBox x:Name="redmineAddressTextBox" Margin="142,121,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" IsReadOnly="True"/>
         <Label x:Name="passwordLabel" Content="Пароль:" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.664,0.506" Width="127"/>
         <TextBox x:Name="loginTextBox" Margin="142,179,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
         <Button Content="Вход" HorizontalAlignment="Right" Margin="0,0,10,10" Width="133" Height="20" VerticalAlignment="Bottom" Click="Button_Click"/>
@@ -17,11 +17,11 @@
             <ComboBoxItem Content="https://"/>
         </ComboBox>
         <Label x:Name="hostLabel" Content="Хост:" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="85"/>
-        <TextBox x:Name="hostTextBox" Margin="142,37,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+        <TextBox x:Name="hostTextBox" Margin="142,37,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" LostFocus="hostTextBox_LostFocus"/>
         <Label x:Name="portLabel" Content="Порт:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="85"/>
         <Label x:Name="urlPathLabel" Content="URL-путь:" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="85"/>
-        <TextBox x:Name="portTextBox" Margin="142,65,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
-        <TextBox x:Name="urlPathTextBox" Margin="142,93,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+        <TextBox x:Name="portTextBox" Margin="142,65,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" LostFocus="portTextBox_LostFocus" TextChanged="portTextBox_TextChanged"/>
+        <TextBox x:Name="urlPathTextBox" Margin="142,93,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top" LostFocus="urlPathTextBox_LostFocus"/>
         <ComboBox x:Name="authTypeComboBox" Margin="142,152,10,0" SelectedIndex="0" Height="22" VerticalAlignment="Top">
             <ComboBoxItem Content="Basic Auth"/>
             <ComboBoxItem Content="Api Key"/>
