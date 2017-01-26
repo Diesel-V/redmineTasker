@@ -24,7 +24,6 @@ namespace RedmineTasker.DAL
         {
             var url = new UriBuilder(_redmineUri);
             url.Path += path;
-            //_redmineUri.LocalPath += path;
             
             var request = (HttpWebRequest)WebRequest.Create(url.Uri);
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
@@ -56,6 +55,47 @@ namespace RedmineTasker.DAL
                     return reader.ReadToEnd();
                 }
             }
+        }
+
+        private void PostRequest(string path, string postData)
+        {
+            var url = new UriBuilder(_redmineUri);
+            url.Path += path;
+            
+            var request = (HttpWebRequest)WebRequest.Create(url.Uri);
+
+            var data = Encoding.ASCII.GetBytes(postData);
+
+            request.Method = WebRequestMethods.Http.Post;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+            ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => true;
+            if (_credentials.ApiKeyCredentials != null)
+            {
+                request.Headers.Add("X-Redmine-API-Key", _credentials.ApiKeyCredentials.ApiKey);
+            }
+            else if (_credentials.LoginPasswordCredentials != null)
+            {
+                request.Credentials = new CredentialCache
+                {
+                    {
+                        url.Uri, "Basic",
+                        new NetworkCredential(_credentials.LoginPasswordCredentials.UserName,
+                            _credentials.LoginPasswordCredentials.UserPassword)
+                    }
+                };
+                request.PreAuthenticate = true;
+            }
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = data.Length;
+
+            using (var stream = request.GetRequestStream())
+            {
+                stream.Write(data, 0, data.Length);
+            }
+
+            var response = (HttpWebResponse)request.GetResponse();
+
+            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
         }
 
         public string GetUsers(string project = "KSM")
@@ -108,7 +148,14 @@ namespace RedmineTasker.DAL
 
         public void PostTask()
         {
-            
+            var issue = new IssueClass
+            {
+                ProjectId = 1,
+                Subject = "example",
+                PriorityId = 4
+            };
+            var temp = issue.ToXml();
+            PostRequest(@"/issues.xml", temp);
         }
 
         /// <summary>

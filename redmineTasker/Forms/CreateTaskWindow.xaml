@@ -19,7 +19,7 @@
         <ComboBox x:Name="RedmineStatusComboBox" HorizontalAlignment="Right" Margin="0,200,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="Name" SelectedIndex="0"/>
         <ComboBox x:Name="RedminePriorityComboBox" HorizontalAlignment="Right" Margin="0,227,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="Name" SelectedIndex="0"/>
         <ComboBox x:Name="RedmineAppointedComboBox" HorizontalAlignment="Right" Margin="0,254,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="UserName"/>
-        <Button Content="Создать" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+        <Button Content="Создать" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="Button_Click"/>
         <ComboBox x:Name="RedmineCategoryComboBox" HorizontalAlignment="Right" Margin="0,281,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="name" SelectedIndex="0" Visibility="Hidden"/>
         <ComboBox x:Name="RedmineVersionComboBox" HorizontalAlignment="Right" Margin="0,308,331,0" Width="172" Height="22" VerticalAlignment="Top" DisplayMemberPath="name" SelectedIndex="0" Visibility="Hidden"/>
 

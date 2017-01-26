@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RedmineModels\IssueClass.cs" />
     <Compile Include="RedmineModels\IssuePriorityClass.cs" />
     <Compile Include="RedmineModels\IssueStatusClass.cs" />
     <Compile Include="RedmineModels\IssueTrackersClass.cs" />

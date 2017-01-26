@@ -58,5 +58,10 @@ namespace RedmineTasker.BL
         {
             return _requestRepository.GetProjectCategories(projectName);
         }
+
+        public void PostTask()
+        {
+            _requestRepository.PostTask();
+        }
     }
 }

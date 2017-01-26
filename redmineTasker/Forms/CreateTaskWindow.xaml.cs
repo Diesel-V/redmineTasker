@@ -88,5 +88,10 @@ namespace redmineTasker.Forms
                 RedmineCategoryComboBox.Items.Add(item);
             }*/
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _requestService.PostTask();
+        }
     }
 }
