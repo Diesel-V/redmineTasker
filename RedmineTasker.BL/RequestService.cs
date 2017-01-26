@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RedmineTasker.AuthModel.Auth;
 using RedmineTasker.DAL;
 using RedmineTasker.DAL.RedmineModels;
@@ -15,9 +16,9 @@ namespace RedmineTasker.BL
         /// <param name="schema"></param>
         /// <param name="host"></param>
         /// <param name="redmineCredentials"></param>
-        public RequestService(string schema, string host, RedmineCredentials redmineCredentials)
+        public RequestService(Uri redmineUri, RedmineCredentials redmineCredentials)
         {
-            _requestRepository = new RequestRepository(schema, host, redmineCredentials);
+            _requestRepository = new RequestRepository(redmineUri, redmineCredentials);
         }
 
         public void GetUsers()

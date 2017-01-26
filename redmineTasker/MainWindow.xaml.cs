@@ -43,7 +43,7 @@ namespace redmineTasker
             {
                 Scheme = ((ContentControl) schemaComboBox.SelectedItem).Content.ToString(),
                 Host = hostTextBox.Text,
-                Port = int.Parse(portTextBox.Text),
+                Port = int.Parse(_port.ToString()),
                 Path = urlPathTextBox.Text
             };
             redmineAddressTextBox.Text = qwe.ToString();

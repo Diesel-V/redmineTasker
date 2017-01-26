@@ -19,7 +19,7 @@ namespace redmineTasker.Forms
         {
             Owner = owner;
             InitializeComponent();
-            _requestService = new RequestService(redmineUri.Scheme, redmineUri.Host, credentials);
+            _requestService = new RequestService(redmineUri, credentials);
             RedmineProjectComboBox.SelectedIndex = 0;
         }
  

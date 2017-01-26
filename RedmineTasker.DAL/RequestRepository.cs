@@ -11,23 +11,22 @@ namespace RedmineTasker.DAL
 {
     public class RequestRepository
     {
-        private readonly string _schema;
-        private readonly string _host;
+        private readonly Uri _redmineUri;
         private readonly RedmineCredentials _credentials;
 
-        public RequestRepository(string schema, string host, RedmineCredentials credentials)
+        public RequestRepository(Uri redmineUri, RedmineCredentials credentials)
         {
-            _schema = schema;
-            _host = host;
+            _redmineUri = redmineUri;
             _credentials = credentials;
         }
 
         private string GetRequest (string path)
         {
-
-            var url = new UriBuilder(_schema, _host,
-                _schema.Equals("https", StringComparison.InvariantCultureIgnoreCase) ? 443 : 80, path).Uri;
-            var request = (HttpWebRequest)WebRequest.Create(url);
+            var url = new UriBuilder(_redmineUri);
+            url.Path += path;
+            //_redmineUri.LocalPath += path;
+            
+            var request = (HttpWebRequest)WebRequest.Create(url.Uri);
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => true;
             request.Method = WebRequestMethods.Http.Get;
@@ -40,7 +39,7 @@ namespace RedmineTasker.DAL
                 request.Credentials = new CredentialCache
                 {
                     {
-                        url, "Basic",
+                        url.Uri, "Basic",
                         new NetworkCredential(_credentials.LoginPasswordCredentials.UserName,
                             _credentials.LoginPasswordCredentials.UserPassword)
                     }
