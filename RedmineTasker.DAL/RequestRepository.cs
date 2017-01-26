@@ -107,6 +107,11 @@ namespace RedmineTasker.DAL
             return Versions.FromXml(responce);
         }
 
+        public void PostTask()
+        {
+            
+        }
+
         /// <summary>
         /// медот шифрованя в base64
         /// </summary>

@@ -15,6 +15,7 @@ namespace redmineTasker
         {
             InitializeComponent();
             Application.Current.MainWindow = this;
+            authTypeComboBox.SelectionChanged += authTypeComboBox_SelectionChanged;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -24,9 +25,11 @@ namespace redmineTasker
 
         private void authTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            passwdLabel.Visibility = passwdTextBox.Visibility = authTypeComboBox.SelectedIndex == 0 ? Visibility.Hidden : Visibility.Visible;
-            Application.Current.MainWindow.Height = authTypeComboBox.SelectedIndex == 0 ? 167 : 195;
-            loginLabel.Content = authTypeComboBox.SelectedIndex == 1 ? "Имя пользователя:": "Ключ:";
+            loginLabel.Visibility = loginTextBox.Visibility = authTypeComboBox.SelectedIndex == 1 ? Visibility.Hidden : Visibility.Visible;
+            passwordLabel.Margin = authTypeComboBox.SelectedIndex == 1 ? new Thickness(10, 176, 0, 0) : new Thickness(10, 199, 0, 0);
+            passwordTextBox.Margin = authTypeComboBox.SelectedIndex == 1 ? new Thickness(142, 179, 10, 0) : new Thickness(142, 207, 10, 0);
+            Application.Current.MainWindow.Height = authTypeComboBox.SelectedIndex == 1 ? 280 : 310;
+            passwordLabel.Content = authTypeComboBox.SelectedIndex == 0 ? "Пароль:" : "Ключ:";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -38,7 +41,7 @@ namespace redmineTasker
                 redmineAddressTextBox.Focus();
                 return;
             }
-            if (string.IsNullOrEmpty(loginTextBox.Text))
+            if (string.IsNullOrEmpty(passwordTextBox.Password))
             {
                 MessageBox.Show(this, "Не заполненно поле авторизации", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 loginTextBox.Focus();
@@ -48,7 +51,7 @@ namespace redmineTasker
             if ((string)authTypeComboBox.SelectionBoxItem == "Api Key")
             {
 
-                credentialClass.ApiKeyCredentials = new ApiKeyCredentials { ApiKey = loginTextBox.Text };
+                credentialClass.ApiKeyCredentials = new ApiKeyCredentials { ApiKey = passwordTextBox.Password };
                 credentialClass.LoginPasswordCredentials = null;
             }
             else
@@ -57,12 +60,12 @@ namespace redmineTasker
                 credentialClass.LoginPasswordCredentials = new LoginPasswordCredentials
                 {
                     UserName = loginTextBox.Text,
-                    UserPassword = passwdTextBox.Text
+                    UserPassword = passwordTextBox.Password
                 };
             }
             
             var createTaskWindow = new CreateTaskWindow(credentialClass, redmineUri, this);
             createTaskWindow.Show();            
-        }
+        }        
     }
 }
