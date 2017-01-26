@@ -20,7 +20,7 @@ namespace redmineTasker
             InitializeComponent();
             Application.Current.MainWindow = this;
             authTypeComboBox.SelectionChanged += authTypeComboBox_SelectionChanged;
-            
+            portTextBox.Text = _port.ToString();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
